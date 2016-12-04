@@ -1,0 +1,4 @@
+Datasets/cat_hier_DMOZ.txt
+Datasets/trainDmoz.txt
+Datasets/testDmoz.txt
+*.pyc
