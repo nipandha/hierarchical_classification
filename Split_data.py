@@ -11,8 +11,8 @@ list_of_trees=[]
 list_of_roots=[]
 list_of_cat=[]
 #path=raw_input("Enter category file path ")
-#path=create_file_current_directory("Datasets/cat_hier_DMOZ.txt)"
-path=create_file_current_directory("Datasets/trial_hier.txt")
+path=create_filename_current_directory("Datasets/cat_hier_DMOZ.txt")
+#path=create_filename_current_directory("Datasets/trial_hier.txt")
 f = open(path, 'r')
 ctr=0
 lines=f.readlines()
@@ -105,16 +105,17 @@ for line in lines:
 
 index=0
 for cat in list_of_cat:
-    filepath=create_file_current_directory("Datasets/hierarchy_"+str(index))
+    filepath=create_filename_current_directory("Datasets/hierarchy_"+str(index))
     
     write_str_list_to_file(filepath,cat)
     index=index+1  
 
 index=0
 for tree in list_of_trees:
-    filepath=create_file_current_directory("Datasets/all_categories_"+str(index))
+    filepath=create_filename_current_directory("Datasets/all_categories_"+str(index))
     write_list_to_file(filepath,tree)
     index=index+1                  
     
-filepath=create_file_current_directory("Datasets/Root_Nodes")
+filepath=create_filename_current_directory("Datasets/Root_Nodes")
 write_list_to_file(filepath,list_of_roots)
+

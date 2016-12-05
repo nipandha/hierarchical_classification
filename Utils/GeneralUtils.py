@@ -9,7 +9,7 @@ Created on Sun Dec  4 19:59:37 2016
 from os.path import dirname, abspath,join
 
     
-def create_file_current_directory(file_name):
+def create_filename_current_directory(file_name):
     path=join(dirname(dirname(abspath(__file__))), file_name)
     
     return path
