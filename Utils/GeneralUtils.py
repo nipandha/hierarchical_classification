@@ -34,3 +34,16 @@ def return_current_directory(file_name):
     path=dirname(dirname(abspath(__file__)))
     
     return path
+def scale_sparse_default(x_train):
+    scaler = preprocessing.MaxAbsScaler()
+    # Fit to training features only and store the scalers
+    scaler.fit(x_train)
+    # Transform training features
+    return x_train
+    train_scaled = scaler.transform(x_train)
+def initialize_list_of_lists(no_of_lists):
+    top_list=[]
+    for i in range(0,11):
+        list=[]
+        top_list.append(copy.copy(list))
+    return top_list
