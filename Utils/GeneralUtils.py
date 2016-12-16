@@ -7,8 +7,9 @@ Created on Sun Dec  4 19:59:37 2016
 """
 
 from os.path import dirname, abspath,join
+import sklearn
+import copy
 
-    
 def create_filename_current_directory(file_name):
     path=join(dirname(dirname(abspath(__file__))), file_name)
     
@@ -35,7 +36,7 @@ def return_current_directory(file_name):
     
     return path
 def scale_sparse_default(x_train):
-    scaler = preprocessing.MaxAbsScaler()
+    scaler = sklearn.preprocessing.MaxAbsScaler()
     # Fit to training features only and store the scalers
     scaler.fit(x_train)
     # Transform training features
