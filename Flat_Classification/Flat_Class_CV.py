@@ -39,6 +39,9 @@ def do_CV(cat, model, X, y, C_list=C_LIST, n_folds=3):
         for train, test in cvf:
             model_use = copy.deepcopy(model)
             model_use.C = c
+
+            print("Checking that C=%s" % model_use.C)
+
             model_use.fit(X[train], y[train])
             score = model_use.score(X[test], y[test])
             del (model_use)
@@ -95,7 +98,7 @@ if __name__ == '__main__':
 
    best_CV = pd.Series(index=range(0, 11))
 
-   for cat in range(0,11):
+   for cat in [10]:
        best_CV.loc[cat] = do_CV_for_category(cat, model_type=TYPE)
 
-   pd.to_pickle(best_CV, ct.ROOT + "Pickles\\Flat_CV\\ALL_%s_CV.p" % TYPE)
+   # pd.to_pickle(best_CV, ct.ROOT + "Pickles\\Flat_CV\\ALL_%s_CV.p" % TYPE)
