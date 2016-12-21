@@ -57,7 +57,7 @@ def get_avg_features(X, y):
 
 if __name__ == '__main__':
 
-   for cat in range(0,11):
+   for cat in range(10):
 
         print("Building average feature matrix for category: %s" % cat)
         avg_feat_matrix, mapping = get_avg_features_cat(cat)

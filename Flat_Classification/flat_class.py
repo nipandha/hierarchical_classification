@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
         print("Running CV for %s" % model_type)
 
-        for cat in [4, 0, 1, 2, 3, 5, 6, 7, 8, 9]:
+        for cat in range(10):
 
             # Read the CV accuracies
             CV_accuracies = pd.read_pickle(ct.ROOT + "Pickles\\Flat_CV\\%s_%s_CV.p" % (cat, model_type))

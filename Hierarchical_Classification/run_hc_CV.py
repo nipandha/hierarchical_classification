@@ -4,17 +4,15 @@ import sklearn.preprocessing
 import sklearn.datasets
 import sklearn.linear_model
 import sklearn.utils
-import copy
 
 import Hierarchical_Classification.hc_model as hcm
 import sklearn.cross_validation
 import Flat_Classification.constants as ct
-import Flat_Classification.checking as ck
 
 N_FOLDS = 3
 C_LIST = [1e-4, 1e-3, 1e-2, 1e-1, 1, 10, 1e2, 1e3, 1e4]
 
-def do_CV(cat, model, X, y, C_list=C_LIST, n_folds=3):
+def do_CV(cat, model, X, y, model_type, C_list=C_LIST, n_folds=3):
 
     scores = pd.Series(index=C_list)
 
@@ -34,9 +32,12 @@ def do_CV(cat, model, X, y, C_list=C_LIST, n_folds=3):
 
             print("CV score is %s" % score)
             c_scores.append(score)
+
+            break;
+
         scores.loc[c] = pd.Series(c_scores).mean()
 
-    pd.to_pickle(scores, ct.ROOT + "Pickles\\Fitted_Hierarchy_CV\\%s_%s_CV.p" % (cat, TYPE))
+    pd.to_pickle(scores, ct.ROOT + "Pickles\\Fitted_Hierarchy_CV\\%s_%s_CV.p" % (cat, model_type))
 
     scores.sort(ascending=False)
     best_c = scores.index[0]
@@ -48,39 +49,26 @@ def do_CV_for_category(cat, model_type):
 
     # Reading X pickles
     scl_X_train_classif = pd.read_pickle(ct.ROOT + "Pickles\\Scaled\\%s_X_scl_train_classif.p" % cat)
-    scl_X_test = pd.read_pickle(ct.ROOT + "Pickles\\Scaled\\%s_X_scl_test_hier.p" % cat)
 
     # Reading y pickles
     y_train_classif = pd.read_pickle(ct.ROOT + "Pickles\\Scaled\\%s_y_train_classif.p" % cat)
-    y_test = pd.read_pickle(ct.ROOT + "Pickles\\Scaled\\%s_y_test.p" % cat)
-
-    # Checking that the y labels are fine
-    assert (ck.check_y(y_train_classif, cat))
-    assert (ck.check_y(y_test, cat))
-
-    # Checking that the x and the ys match
-    assert (ck.check_x_y(scl_X_train_classif, y_train_classif))
-    assert (ck.check_x_y(scl_X_test, y_test))
-
-    # Checking that the scaling is fine
-    assert (scl_X_train_classif.max() == 1.0)
 
     # Run CV and output CV scores
     model = ct.MODELS.get(model_type)
 
-    best_c = do_CV(cat, model, scl_X_train_classif, y_train_classif)
+    best_c = do_CV(cat, model, scl_X_train_classif, y_train_classif, model_type)
 
     return best_c
 
 if __name__ == '__main__':
 
-   TYPE='LR_OVR'
+   best_CV = pd.Series(index=range(10))
 
-   print("Running CV for %s" % TYPE)
+   for model_type in ['LR_OVR', 'SVM_OVR']:
 
-   best_CV = pd.Series(index=range(0, 11))
+       print("Running CV for %s" % model_type)
 
-   for cat in [10]:
-       best_CV.loc[cat] = do_CV_for_category(cat, model_type=TYPE)
+       for cat in [4]:
+            best_CV.loc[cat] = do_CV_for_category(cat, model_type)
 
-   pd.to_pickle(best_CV, ct.ROOT + "Pickles\\Flat_CV\\ALL_%s_CV.p" % TYPE)
+       pd.to_pickle(best_CV, ct.ROOT + "Pickles\\Flat_CV\\ALL_%s_CV.p" % model_type)

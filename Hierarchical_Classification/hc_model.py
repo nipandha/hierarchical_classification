@@ -88,8 +88,8 @@ class HierarchyClassification:
 
                     self.node_models[node] = mock_model
 
-        print("Pickling the node models!")
-        pd.to_pickle(self.node_models, h.ROOT+"Fitted_Hierarchy//%s_Fitted_HC.p")
+        # print("Pickling the node models!")
+        # pd.to_pickle(self.node_models, h.ROOT+("Fitted_Hierarchy//%s_Fitted_HC.p" % self.cat))
 
 
 

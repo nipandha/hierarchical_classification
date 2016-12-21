@@ -1,11 +1,3 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec  4 14:49:20 2016
-
-@author: user
-"""
-
 list_of_trees=[]
 list_of_roots=[]
 list_of_cat=[]

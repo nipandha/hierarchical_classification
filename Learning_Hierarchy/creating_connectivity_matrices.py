@@ -23,7 +23,7 @@ def get_connect_matrix(cat):
 
 if __name__ == '__main__':
 
-   for cat in range(11):
+   for cat in range(10):
 
         # Reading y pickle
         y = pd.read_pickle(ct.ROOT + "Pickles\\Scaled\\%s_y_train_hier.p" % cat)

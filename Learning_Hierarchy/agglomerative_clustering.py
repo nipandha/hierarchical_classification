@@ -16,19 +16,24 @@ CLUST_MODELS = {
                 "Cos_Average_3": sklearn.cluster.AgglomerativeClustering(
                     n_clusters=3, linkage='average',
                     compute_full_tree=True,  affinity='cosine'),
-
-                # "Complete_2": sklearn.cluster.AgglomerativeClustering(
-                #         n_clusters=2, linkage='complete', compute_full_tree=True),
-                # "Complete_3": sklearn.cluster.AgglomerativeClustering(
-                #         n_clusters=3, linkage='complete', compute_full_tree=True),
-                # "Ward_2": sklearn.cluster.AgglomerativeClustering(
-                #         n_clusters=2, linkage='ward', compute_full_tree=True),
-                # "Ward_3": sklearn.cluster.AgglomerativeClustering(
-                #         n_clusters=3, linkage='ward', compute_full_tree=True),
-                # "Average_2": sklearn.cluster.AgglomerativeClustering(
-                #         n_clusters=2, linkage='average', compute_full_tree=True),
-                # "Average_3": sklearn.cluster.AgglomerativeClustering(
-                #         n_clusters=3, linkage='average', compute_full_tree=True),
+                "Complete_2": sklearn.cluster.AgglomerativeClustering(
+                    n_clusters=2, linkage='complete',
+                    compute_full_tree=True),
+                "Complete_3": sklearn.cluster.AgglomerativeClustering(
+                    n_clusters=3, linkage='complete',
+                    compute_full_tree=True),
+                "Ward_2": sklearn.cluster.AgglomerativeClustering(
+                    n_clusters=2, linkage='ward',
+                    compute_full_tree=True),
+                "Ward_3": sklearn.cluster.AgglomerativeClustering(
+                    n_clusters=3, linkage='ward',
+                    compute_full_tree=True),
+                "Average_2": sklearn.cluster.AgglomerativeClustering(
+                    n_clusters=2, linkage='average',
+                    compute_full_tree=True),
+                "Average_3": sklearn.cluster.AgglomerativeClustering(
+                    n_clusters=3, linkage='average',
+                    compute_full_tree=True),
                 }
 
 def fit_and_output(model, avg_X, path_stub):
